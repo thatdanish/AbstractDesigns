@@ -31,7 +31,6 @@ with open("original.data", "w") as file:
     for val in original_data:
         file.write(val+"\n")
 
-
 # Filtered data retrieval
 filtered_data = []
 filtered_data_bin = []
@@ -48,4 +47,3 @@ plt.plot(filtered_data, color='red', label="Filtered data")
 plt.legend()
 plt.savefig("image.png", dpi=600)
 plt.show()
-

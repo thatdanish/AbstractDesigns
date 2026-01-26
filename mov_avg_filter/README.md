@@ -10,3 +10,4 @@
 - __script.py__: Generates test data, retrieves filtered data and plots them.
 - __MavgFilter.sv__: FIR filter logic.
 - __fir_filter_mavg_tb.sv__: Testbench file.
+- fir.vcd__: Value change dump file. 
