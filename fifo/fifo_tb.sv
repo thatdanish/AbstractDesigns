@@ -6,7 +6,7 @@ module fifo_tb();
 
 localparam CLOCKPERIOD = 100;
 localparam SIZE = 32;
-localparam LEN = 50;
+localparam LEN = 10;
 
 logic clk_i, rst_i, valid_in, ready_in, valid_out, is_full_out;
 logic [SIZE-1:0] data_write, data_read;
@@ -28,6 +28,36 @@ initial begin
     data_write = 'd0;
 
     wait (rst_i);
+    //    write 10 data values
+        #(CLOCKPERIOD);
+        valid_in = 1'b1;
+        data_write = 32'habcdefaa;
+        #(CLOCKPERIOD);
+        data_write = 32'hdeaddead;
+        #(CLOCKPERIOD);
+        data_write = 32'haaaaaaaa;
+        #(CLOCKPERIOD);
+        data_write = 32'hdddddddd;
+        #(CLOCKPERIOD);
+        data_write = 32'hdeaddead;
+        #(CLOCKPERIOD);
+        data_write = 32'haaaaaaaa;
+        #(CLOCKPERIOD);
+        data_write = 32'hdddddddd;
+        #(CLOCKPERIOD);
+        data_write = 32'hdeaddead;
+        #(CLOCKPERIOD);
+        data_write = 32'haaaaaaaa;
+        #(CLOCKPERIOD);
+        data_write = 32'hdddddddd;
+        #(CLOCKPERIOD);
+        valid_in = 1'b0;
+    //    read 4 data values
+        #(CLOCKPERIOD);
+        ready_in = 1'b1;
+        #(4*CLOCKPERIOD);
+        ready_in = 1'b0;
+    //    write 4 data values
         #(CLOCKPERIOD);
         valid_in = 1'b1;
         data_write = 32'habcdefaa;
@@ -39,6 +69,7 @@ initial begin
         data_write = 32'hdddddddd;
         #(CLOCKPERIOD);
         valid_in = 1'b0;
+    //    read 2 data values
         #(CLOCKPERIOD);
         ready_in = 1'b1;
         #(2*CLOCKPERIOD);
